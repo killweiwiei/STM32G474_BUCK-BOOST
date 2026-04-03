@@ -1,0 +1,13 @@
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ..\Lvgl9\src\others\xml\lv_xml_utils.c
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ..\Lvgl9\src\others\xml\lv_xml_utils.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ..\Lvgl9\src\others\xml\../../lv_conf_internal.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ..\Lvgl9\src\others\xml\../../lv_conf_kconfig.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ../Lvgl9/lv_conf.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ..\Lvgl9\src\others\xml\../../stdlib/lv_string.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: ..\Lvgl9\src\others\xml\../../stdlib/../misc/lv_types.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\stm32g474_buck_boost_v1.0\lv_xml_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
