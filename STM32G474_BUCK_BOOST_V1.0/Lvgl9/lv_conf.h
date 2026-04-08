@@ -24,7 +24,7 @@
 
 /* Memory: 48KB heap */
 #define LV_MEM_SIZE             (60 * 1024U)
-#define LV_MEM_POOL_EXPAND_SIZE 0
+    #define LV_MEM_POOL_EXPAND_SIZE 0
 #define LV_MEM_ADR              0
 
 /* OS */
@@ -33,12 +33,12 @@
 #define LV_DRAW_BUF_STRIDE_ALIGN 1
 #define LV_DRAW_BUF_ALIGN        4
 #define LV_USE_MATRIX            0
-#define LV_DRAW_THREAD_STACK_SIZE (8 * 1024) /*  RTOSï¼æ­¤å¼äï¼ä»æ¶ warning */
+#define LV_DRAW_THREAD_STACK_SIZE (8 * 1024) /*  RTOSï¿½æ­¤ï¿½ï¿½ï¿½ï¿½ï¿½ warning */
 
 /* Draw */
 #define LV_USE_DRAW_SW          1
-#define LV_DRAW_SW_DRAW_UNIT_CNT    1
-#define LV_DRAW_SW_SHADOW_CACHE_SIZE 0
+    #define LV_DRAW_SW_DRAW_UNIT_CNT    1
+        #define LV_DRAW_SW_SHADOW_CACHE_SIZE 0
 #define LV_DRAW_SW_CIRCLE_CACHE_CNT  4
 #define LV_DRAW_SW_COMPLEX           1
 
@@ -87,7 +87,7 @@
 #define LV_USE_CHART        1
 #define LV_USE_CHECKBOX     0
 #define LV_USE_DROPDOWN     1
-#define LV_USE_IMAGE        1  /* arc/barç­ç»ä»¶äèµimageï¼å¼ */
+#define LV_USE_IMAGE        1  /* arc/barï¿½ï¿½ä»¶ï¿½ï¿½imageï¿½ï¿½ */
 #define LV_USE_IMAGEBUTTON  0
 #define LV_USE_KEYBOARD     0
 #define LV_USE_LABEL        1
@@ -114,7 +114,7 @@
 #define LV_USE_THEME_DEFAULT    1
 #define LV_THEME_DEFAULT_DARK        1
 #define LV_THEME_DEFAULT_GROW        1
-#define LV_THEME_DEFAULT_TRANSITION_TIME 80
+    #define LV_THEME_DEFAULT_TRANSITION_TIME 80
 #define LV_USE_THEME_SIMPLE     0
 #define LV_USE_THEME_MONO       0
 

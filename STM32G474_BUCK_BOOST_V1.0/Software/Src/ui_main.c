@@ -68,6 +68,7 @@ static lv_obj_t *s_lbl_btemp;
 static lv_obj_t *s_lbl_mode;
 
 static lv_obj_t *s_lbl_status;
+static lv_obj_t *s_lbl_outmode;
 
 
 
@@ -84,6 +85,7 @@ static lv_obj_t *s_lbl_brightness = NULL;
 static uint8_t   s_brightness = 80;
 static uint8_t   s_menu_sel  = 0;
 static uint8_t   s_ctrl_cc   = 0;  /* 0=CV(constant voltage), 1=CC(constant current) */
+static uint8_t   s_output_mode = 0; /* 0=DCM, 1=CCM */
 static lv_obj_t *s_lbl_cvcc  = NULL; /* HOME CV/CC indicator label */
 /* s_menu_items declared above with MENU_COUNT */
 static lv_obj_t *s_lbl_kp_val;
@@ -388,6 +390,7 @@ static lv_obj_t *s_lbl_btemp;
 static lv_obj_t *s_lbl_mode;
 
 static lv_obj_t *s_lbl_status;
+static lv_obj_t *s_lbl_outmode;
 
 static lv_obj_t *s_lbl_vout_actual;
 
@@ -700,38 +703,50 @@ static void home_page_create(void)
     lv_obj_set_pos(s_lbl_btemp,132,168);
     ui_sep(s_scr_home,190);
 
-    /* MODE/STATE/CVCC section */
+    /* MODE / CVCC / DCM-CCM / STATE section */
     lv_obj_t *lmd_tag=lv_label_create(s_scr_home);
     lv_label_set_text(lmd_tag,"Mode");
     lv_obj_set_style_text_color(lmd_tag,lv_color_hex(0x8B949E),0);
     lv_obj_set_style_text_font(lmd_tag,&lv_font_montserrat_12,0);
-    lv_obj_align(lmd_tag,LV_ALIGN_TOP_MID,-78,194);
+    lv_obj_align(lmd_tag,LV_ALIGN_TOP_MID,-84,194);
     s_lbl_mode=lv_label_create(s_scr_home);
     lv_label_set_text(s_lbl_mode,"BUCK");
     lv_obj_set_style_text_color(s_lbl_mode,lv_color_hex(0x0000EE),0);
-    lv_obj_set_style_text_font(s_lbl_mode,&lv_font_montserrat_20,0);
-    lv_obj_align(s_lbl_mode,LV_ALIGN_TOP_MID,-78,208);
-    /* CV/CC: same layout as Mode/State */
+    lv_obj_set_style_text_font(s_lbl_mode,&lv_font_montserrat_16,0);
+    lv_obj_align(s_lbl_mode,LV_ALIGN_TOP_MID,-84,210);
+
     lv_obj_t *lcvcc_tag=lv_label_create(s_scr_home);
     lv_label_set_text(lcvcc_tag,"CV/CC");
     lv_obj_set_style_text_color(lcvcc_tag,lv_color_hex(0x8B949E),0);
     lv_obj_set_style_text_font(lcvcc_tag,&lv_font_montserrat_12,0);
-    lv_obj_align(lcvcc_tag,LV_ALIGN_TOP_MID,0,194);
+    lv_obj_align(lcvcc_tag,LV_ALIGN_TOP_MID,-26,194);
     s_lbl_cvcc=lv_label_create(s_scr_home);
     lv_label_set_text(s_lbl_cvcc,"CV");
     lv_obj_set_style_text_color(s_lbl_cvcc,lv_color_hex(0x00FFFF),0);
-    lv_obj_set_style_text_font(s_lbl_cvcc,&lv_font_montserrat_20,0);
-    lv_obj_align(s_lbl_cvcc,LV_ALIGN_TOP_MID,0,208);
+    lv_obj_set_style_text_font(s_lbl_cvcc,&lv_font_montserrat_16,0);
+    lv_obj_align(s_lbl_cvcc,LV_ALIGN_TOP_MID,-26,210);
+
+    lv_obj_t *lout_tag=lv_label_create(s_scr_home);
+    lv_label_set_text(lout_tag,"DCM/CCM");
+    lv_obj_set_style_text_color(lout_tag,lv_color_hex(0x8B949E),0);
+    lv_obj_set_style_text_font(lout_tag,&lv_font_montserrat_12,0);
+    lv_obj_align(lout_tag,LV_ALIGN_TOP_MID,38,194);
+    s_lbl_outmode=lv_label_create(s_scr_home);
+    lv_label_set_text(s_lbl_outmode,"DCM");
+    lv_obj_set_style_text_color(s_lbl_outmode,lv_color_hex(0x7EE787),0);
+    lv_obj_set_style_text_font(s_lbl_outmode,&lv_font_montserrat_16,0);
+    lv_obj_align(s_lbl_outmode,LV_ALIGN_TOP_MID,38,210);
+
     lv_obj_t *lst_tag=lv_label_create(s_scr_home);
     lv_label_set_text(lst_tag,"State");
     lv_obj_set_style_text_color(lst_tag,lv_color_hex(0x8B949E),0);
     lv_obj_set_style_text_font(lst_tag,&lv_font_montserrat_12,0);
-    lv_obj_align(lst_tag,LV_ALIGN_TOP_MID,78,194);
+    lv_obj_align(lst_tag,LV_ALIGN_TOP_MID,96,194);
     s_lbl_status=lv_label_create(s_scr_home);
     lv_label_set_text(s_lbl_status,"STOP");
     lv_obj_set_style_text_color(s_lbl_status,lv_color_hex(0xFF0000),0);
-    lv_obj_set_style_text_font(s_lbl_status,&lv_font_montserrat_20,0);
-    lv_obj_align(s_lbl_status,LV_ALIGN_TOP_MID,78,208);
+    lv_obj_set_style_text_font(s_lbl_status,&lv_font_montserrat_16,0);
+    lv_obj_align(s_lbl_status,LV_ALIGN_TOP_MID,96,210);
     ui_sep(s_scr_home,234);
 
     /* Bottom hint CENTERED */
@@ -988,6 +1003,11 @@ void ui_vout_toggle_adjust(void)
 
     } else {
 
+        /* DCM 模式下确认即停机，避免新设定值先短暂作用到输出。 */
+        if ((CTRL.OutputMode == CTRL_OUTPUT_MODE_DCM) && CTRL.HRTIMActive) {
+            CTRL_Stop();
+        }
+
         /* Commit: write digits back to current CV/CC target */
 
         if (s_ctrl_cc) {
@@ -1175,7 +1195,13 @@ void ui_main_update(void)
 
     }
 
-
+    /* DCM / CCM */
+    if (s_lbl_outmode) {
+        lv_label_set_text(s_lbl_outmode,
+            (CTRL.OutputMode == CTRL_OUTPUT_MODE_CCM) ? "CCM" : "DCM");
+        lv_obj_set_style_text_color(s_lbl_outmode,
+            lv_color_hex((CTRL.OutputMode == CTRL_OUTPUT_MODE_CCM) ? 0xFFA657 : 0x7EE787), 0);
+    }
 
     /* Vout setpoint digits - only refresh when NOT in adjust mode
 
@@ -1322,24 +1348,35 @@ static void pid_page_create(void)
  * ================================================================ */
 
 /* ================================================================
- * Work Mode page: AUTO/BUCK/BOOST/BB manual selection
+ * Work Mode page: AUTO / BB
  * ================================================================ */
-static lv_obj_t *s_lbl_work[4];   /* AUTO, BUCK, BOOST, BB */
-static uint8_t   s_work_sel = 0;  /* 0=AUTO 1=BUCK 2=BOOST 3=BB */
-static const char *s_work_labels[4] = {
+static lv_obj_t *s_lbl_work[2];   /* AUTO, BB */
+static uint8_t   s_work_sel = 0;  /* 0=AUTO 1=BB */
+static const char *s_work_labels[2] = {
     "  AUTO  (auto select)",
-    "  BUCK  (Vin > Vout)",
-    "  BOOST (Vin < Vout)",
-    "  BB    (Vin ~ Vout)",
+    "  BB    (force buck-boost)",
 };
 
 static void work_page_refresh(void)
 {
     uint8_t i;
-    for (i = 0; i < 4; i++) {
+    uint8_t current = (CTRL.WorkMode == CTRL_WORK_MODE_BB) ? 1U : 0U;
+    char buf[40];
+
+    for (i = 0; i < 2; i++) {
         if (!s_lbl_work[i]) continue;
-        lv_obj_set_style_text_color(s_lbl_work[i],
-            (i == s_work_sel) ? lv_color_hex(0xF7C948) : lv_color_hex(0x8B949E), 0);
+        lv_snprintf(buf, sizeof(buf), "%s%s",
+            (i == s_work_sel) ? "[>] " : ((i == current) ? "[*] " : "[ ] "),
+            s_work_labels[i]);
+        lv_label_set_text(s_lbl_work[i], buf);
+
+        if (i == s_work_sel) {
+            lv_obj_set_style_text_color(s_lbl_work[i], lv_color_hex(0xF7C948), 0);
+        } else if (i == current) {
+            lv_obj_set_style_text_color(s_lbl_work[i], lv_color_hex(0x3FB950), 0);
+        } else {
+            lv_obj_set_style_text_color(s_lbl_work[i], lv_color_hex(0x8B949E), 0);
+        }
     }
 }
 
@@ -1348,11 +1385,11 @@ static void work_page_create(void)
     s_scr_work = ui_screen();
     ui_titlebar(s_scr_work, "Work Mode", 0xFFA657);
     uint8_t i;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 2; i++) {
         s_lbl_work[i] = lv_label_create(s_scr_work);
         lv_label_set_text(s_lbl_work[i], s_work_labels[i]);
         lv_obj_set_style_text_font(s_lbl_work[i], &lv_font_montserrat_16, 0);
-        lv_obj_set_pos(s_lbl_work[i], 16, 50 + i * 44);
+        lv_obj_set_pos(s_lbl_work[i], 16, 68 + i * 52);
     }
     ui_sep(s_scr_work, 230);
     lv_obj_t *l = lv_label_create(s_scr_work);
@@ -1360,15 +1397,14 @@ static void work_page_create(void)
     lv_obj_set_style_text_color(l, lv_color_hex(0x30363D), 0);
     lv_obj_set_style_text_font(l, &lv_font_montserrat_12, 0);
     lv_obj_set_pos(l, 4, 244);
-    /* init selection from current mode */
-    s_work_sel = 0; /* default AUTO */
+    s_work_sel = (CTRL.WorkMode == CTRL_WORK_MODE_BB) ? 1 : 0;
     work_page_refresh();
 }
 
 void ui_work_toggle(int8_t dir)
 {
     if (s_page != UI_PAGE_MODE) return;
-    if (dir > 0) { if (s_work_sel < 3) s_work_sel++; }
+    if (dir > 0) { if (s_work_sel < 1) s_work_sel++; }
     else         { if (s_work_sel > 0) s_work_sel--; }
     work_page_refresh();
 }
@@ -1376,35 +1412,55 @@ void ui_work_toggle(int8_t dir)
 void ui_work_confirm(void)
 {
     if (s_page != UI_PAGE_MODE) return;
-    switch (s_work_sel) {
-        case 0: CTRL_SetMode(CTRL_MODE_OFF); break; /* AUTO: let CTRL_Run select */
-        case 1: CTRL_SetMode(CTRL_MODE_BUCK);  break;
-        case 2: CTRL_SetMode(CTRL_MODE_BOOST); break;
-        case 3: CTRL_SetMode(CTRL_MODE_BB);    break;
-    }
-    /* AUTO mode: CTRL_Run will call CTRL_AutoSelectMode each cycle */
+    CTRL_SetWorkMode((s_work_sel == 1) ? CTRL_WORK_MODE_BB : CTRL_WORK_MODE_AUTO);
+    Config_Save();
     ui_subpage_back();
 }
 
 /* ================================================================
  * CV/CC Output Mode page
  * ================================================================ */
-static lv_obj_t *s_lbl_cvcc_cv = NULL;
-static lv_obj_t *s_lbl_cvcc_cc = NULL;
-static uint8_t   s_cvcc_sel    = 0;
+static lv_obj_t *s_lbl_cvcc_cv  = NULL;
+static lv_obj_t *s_lbl_cvcc_cc  = NULL;
+static lv_obj_t *s_lbl_cvcc_dcm = NULL;
+static lv_obj_t *s_lbl_cvcc_ccm = NULL;
+static uint8_t   s_cvcc_sel     = 0;
+static uint8_t   s_output_sel   = 0;
+static uint8_t   s_cvcc_focus   = 0; /* 0=CV/CC, 1=DCM/CCM */
 
 static void cvcc_page_refresh(void)
 {
-    char buf[40];
+    char buf[48];
+    uint8_t current_cvcc = ui_get_ctrl_cc();
+    uint8_t current_out  = ui_get_output_mode();
     if (!s_lbl_cvcc_cv) return;
-    lv_snprintf(buf, sizeof(buf), "  CV  %.3fV", CTRL.VoutRef);
+
+    lv_snprintf(buf, sizeof(buf), "%sCV  %.3fV",
+        (s_cvcc_focus == 0 && s_cvcc_sel == 0) ? "[>] " : ((current_cvcc == 0) ? "[*] " : "[ ] "),
+        CTRL.VoutRef);
     lv_label_set_text(s_lbl_cvcc_cv, buf);
-    lv_snprintf(buf, sizeof(buf), "  CC  %.3fA", CTRL.IoutLimit);
+
+    lv_snprintf(buf, sizeof(buf), "%sCC  %.3fA",
+        (s_cvcc_focus == 0 && s_cvcc_sel == 1) ? "[>] " : ((current_cvcc == 1) ? "[*] " : "[ ] "),
+        CTRL.IoutLimit);
     lv_label_set_text(s_lbl_cvcc_cc, buf);
+
+    lv_snprintf(buf, sizeof(buf), "%sDCM  discontinuous",
+        (s_cvcc_focus == 1 && s_output_sel == 0) ? "[>] " : ((current_out == 0) ? "[*] " : "[ ] "));
+    lv_label_set_text(s_lbl_cvcc_dcm, buf);
+
+    lv_snprintf(buf, sizeof(buf), "%sCCM  continuous",
+        (s_cvcc_focus == 1 && s_output_sel == 1) ? "[>] " : ((current_out == 1) ? "[*] " : "[ ] "));
+    lv_label_set_text(s_lbl_cvcc_ccm, buf);
+
     lv_obj_set_style_text_color(s_lbl_cvcc_cv,
-        s_cvcc_sel==0?lv_color_hex(0xF7C948):lv_color_hex(0x4A5568), 0);
+        (s_cvcc_focus == 0 && s_cvcc_sel == 0) ? lv_color_hex(0xF7C948) : ((current_cvcc == 0) ? lv_color_hex(0x22D3EE) : lv_color_hex(0x4A5568)), 0);
     lv_obj_set_style_text_color(s_lbl_cvcc_cc,
-        s_cvcc_sel==1?lv_color_hex(0xF7C948):lv_color_hex(0x4A5568), 0);
+        (s_cvcc_focus == 0 && s_cvcc_sel == 1) ? lv_color_hex(0xF7C948) : ((current_cvcc == 1) ? lv_color_hex(0x22D3EE) : lv_color_hex(0x4A5568)), 0);
+    lv_obj_set_style_text_color(s_lbl_cvcc_dcm,
+        (s_cvcc_focus == 1 && s_output_sel == 0) ? lv_color_hex(0xF7C948) : ((current_out == 0) ? lv_color_hex(0x3FB950) : lv_color_hex(0x4A5568)), 0);
+    lv_obj_set_style_text_color(s_lbl_cvcc_ccm,
+        (s_cvcc_focus == 1 && s_output_sel == 1) ? lv_color_hex(0xF7C948) : ((current_out == 1) ? lv_color_hex(0x3FB950) : lv_color_hex(0x4A5568)), 0);
 }
 
 static void cvcc_page_create(void)
@@ -1412,27 +1468,65 @@ static void cvcc_page_create(void)
     s_scr_mode = ui_screen();
     ui_titlebar(s_scr_mode, "Output Mode", 0xF0883E);
     lv_obj_t *l;
+
+    l = lv_label_create(s_scr_mode);
+    lv_label_set_text(l, "Target");
+    lv_obj_set_style_text_font(l, &lv_font_montserrat_14, 0);
+    lv_obj_set_style_text_color(l, lv_color_hex(0x79C0FF), 0);
+    lv_obj_set_pos(l, 16, 42);
+
     s_lbl_cvcc_cv = lv_label_create(s_scr_mode);
     lv_label_set_text(s_lbl_cvcc_cv, "  CV  0.000V");
     lv_obj_set_style_text_font(s_lbl_cvcc_cv, &lv_font_montserrat_16, 0);
-    lv_obj_set_pos(s_lbl_cvcc_cv, 16, 70);
+    lv_obj_set_pos(s_lbl_cvcc_cv, 16, 66);
+
     s_lbl_cvcc_cc = lv_label_create(s_scr_mode);
     lv_label_set_text(s_lbl_cvcc_cc, "  CC  0.000A");
     lv_obj_set_style_text_font(s_lbl_cvcc_cc, &lv_font_montserrat_16, 0);
-    lv_obj_set_pos(s_lbl_cvcc_cc, 16, 120);
-    ui_sep(s_scr_mode, 180);
+    lv_obj_set_pos(s_lbl_cvcc_cc, 16, 98);
+
+    ui_sep(s_scr_mode, 132);
+
     l = lv_label_create(s_scr_mode);
-    lv_label_set_text(l, "[ENC]Toggle  [KEY]Confirm  [K2]Back");
+    lv_label_set_text(l, "Conduction");
+    lv_obj_set_style_text_font(l, &lv_font_montserrat_14, 0);
+    lv_obj_set_style_text_color(l, lv_color_hex(0xFF7B72), 0);
+    lv_obj_set_pos(l, 16, 142);
+
+    s_lbl_cvcc_dcm = lv_label_create(s_scr_mode);
+    lv_label_set_text(s_lbl_cvcc_dcm, "  DCM  discontinuous");
+    lv_obj_set_style_text_font(s_lbl_cvcc_dcm, &lv_font_montserrat_16, 0);
+    lv_obj_set_pos(s_lbl_cvcc_dcm, 16, 166);
+
+    s_lbl_cvcc_ccm = lv_label_create(s_scr_mode);
+    lv_label_set_text(s_lbl_cvcc_ccm, "  CCM  continuous");
+    lv_obj_set_style_text_font(s_lbl_cvcc_ccm, &lv_font_montserrat_16, 0);
+    lv_obj_set_pos(s_lbl_cvcc_ccm, 16, 198);
+
+    ui_sep(s_scr_mode, 230);
+    l = lv_label_create(s_scr_mode);
+    lv_label_set_text(l, "[ENC]Toggle  [KEY]Next/Confirm  [K2]Back");
     lv_obj_set_style_text_color(l, lv_color_hex(0x30363D), 0);
     lv_obj_set_style_text_font(l, &lv_font_montserrat_12, 0);
-    lv_obj_set_pos(l, 4, 190);
-    s_cvcc_sel = s_ctrl_cc;
+    lv_obj_set_pos(l, 4, 240);
+
+    s_cvcc_sel   = s_ctrl_cc;
+    s_output_sel = s_output_mode;
+    s_cvcc_focus = 0;
     cvcc_page_refresh();
 }
 
 void ui_cvcc_confirm(void)
 {
+    if (s_cvcc_focus == 0) {
+        s_cvcc_focus = 1;
+        cvcc_page_refresh();
+        return;
+    }
+
     ui_set_ctrl_cc(s_cvcc_sel);
+    ui_set_output_mode(s_output_sel);
+    CTRL.OutputMode = s_output_sel ? CTRL_OUTPUT_MODE_CCM : CTRL_OUTPUT_MODE_DCM;
     Config_Save();
     ui_goto_home();
 }
@@ -1441,7 +1535,8 @@ void ui_cvcc_toggle(int8_t dir)
 {
     (void)dir;
     if (s_page != UI_PAGE_CVCC) return;
-    s_cvcc_sel = s_cvcc_sel ? 0 : 1;
+    if (s_cvcc_focus == 0) s_cvcc_sel = s_cvcc_sel ? 0 : 1;
+    else                   s_output_sel = s_output_sel ? 0 : 1;
     cvcc_page_refresh();
 }
 
@@ -1693,7 +1788,7 @@ void ui_menu_enter(void)
 
         case 0: /* Output Mode -> CV/CC sub-page */
 
-            if (!s_scr_mode) cvcc_page_create(); if (s_scr_mode) { lv_screen_load(s_scr_mode); s_page = UI_PAGE_CVCC; s_cvcc_sel = s_ctrl_cc; cvcc_page_refresh(); }
+            if (!s_scr_mode) cvcc_page_create(); if (s_scr_mode) { lv_screen_load(s_scr_mode); s_page = UI_PAGE_CVCC; s_cvcc_sel = s_ctrl_cc; s_output_sel = s_output_mode; s_cvcc_focus = 0; cvcc_page_refresh(); }
 
             break;
 
@@ -1791,6 +1886,8 @@ uint8_t ui_get_page(void)
 }
 
 uint8_t ui_get_ctrl_cc(void) { return s_ctrl_cc; }
+uint8_t ui_get_output_mode(void) { return s_output_mode; }
+void    ui_set_output_mode(uint8_t mode) { s_output_mode = mode ? 1U : 0U; }
 void    ui_set_ctrl_cc(uint8_t cc) {
     s_ctrl_cc = cc & 1;
     if (s_lbl_cvcc) {

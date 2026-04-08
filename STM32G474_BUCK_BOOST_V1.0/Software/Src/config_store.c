@@ -98,10 +98,14 @@ uint8_t Config_Load(void)
 
     /* Apply CV/CC mode */
     ui_set_ctrl_cc((uint8_t)(rec.payload.ctrl_cc & 1));
+    ui_set_output_mode((uint8_t)(rec.payload.output_mode & 1));
+    CTRL.OutputMode = ui_get_output_mode() ? CTRL_OUTPUT_MODE_CCM : CTRL_OUTPUT_MODE_DCM;
+
+    /* Apply work strategy */
+    CTRL.WorkMode = (rec.payload.work_mode == 1U) ? CTRL_WORK_MODE_BB : CTRL_WORK_MODE_AUTO;
 
     /* Default output state is always OFF at power-up.
-     * Do not restore work mode into CTRL.Mode here; mode will be
-     * re-evaluated on KEY1/CTRL_Start using current Vref and Vin. */
+     * Actual run mode will be re-evaluated on KEY1/CTRL_Start. */
     CTRL.Mode = CTRL_MODE_OFF;
 
     printf("[CFG] Loaded: Kp=%.1f Ki=%.1f Kd=%.3f Vref=%.3fV Fan=%s(%d%%) Mode=%lu CC=%lu\r\n",
@@ -130,17 +134,12 @@ void Config_Save(void)
     rec.payload.fan_auto  = (uint32_t)g_fan_auto;
     rec.payload.fan_speed = (uint32_t)g_fan_speed;
 
-    /* Work Mode: map CTRL.Mode to index */
-    switch (CTRL.Mode) {
-        case CTRL_MODE_BUCK:  rec.payload.work_mode = 1; break;
-        case CTRL_MODE_BOOST: rec.payload.work_mode = 2; break;
-        case CTRL_MODE_BB:    rec.payload.work_mode = 3; break;
-        default:              rec.payload.work_mode = 0; break; /* AUTO */
-    }
+    /* Work Mode: 0=AUTO 1=BB */
+    rec.payload.work_mode = (CTRL.WorkMode == CTRL_WORK_MODE_BB) ? 1U : 0U;
 
-    /* CV/CC - read from ui_main extern */
-    extern uint8_t s_ctrl_cc;
-    rec.payload.ctrl_cc = (uint32_t)ui_get_ctrl_cc();
+    /* CV/CC + DCM/CCM */
+    rec.payload.ctrl_cc     = (uint32_t)ui_get_ctrl_cc();
+    rec.payload.output_mode = (uint32_t)ui_get_output_mode();
 
     /* Compute CRC */
     rec.crc32 = Config_CRC32((const uint8_t *)&rec.payload,

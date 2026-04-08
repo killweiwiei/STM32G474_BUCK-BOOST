@@ -1,7 +1,7 @@
 /**
  * @file    callback.c
  * @brief   HAL \xd6\xd0\xb6\xcf\xbb\xd8\xb5\xf7\xba\xaf\xca\xfd\xbc\xaf\xd6\xd0\xb9\xdc\xc0\xed
- * @note    \xd6\xd0\xb6\xcf\xc0\xef\xd6\xbb\xc9\xe8\xd1\xf9\xd7\xe9\xd6\xb8\xa3\xac\xd6\xf7\xd1\xad\xbb\xb7\xd6\xd0\xb4\xa6\xc0\xed LVGL \xba\xaf\xca\xfd\xa3\xa8\xb7\xc0\xd6\xc6\x¿¨\xd2\xbb\xa3\xa9
+ * @note    \xd6\xd0\xb6\xcf\xc0\xef\xd6\xbb\xc9\xe8\xd1\xf9\xd7\xe9\xd6\xb8\xa3\xac\xd6\xf7\xd1\xad\xbb\xb7\xd6\xd0\xb4\xa6\xc0\xed LVGL \xba\xaf\xca\xfd\xa3\xa8\xb7\xc0\xd6\xc6\x\xd2\xbb\xa3\xa9
  * @version V1.3
  * @date    2024/07/29
  * @author  Robot
@@ -83,14 +83,33 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
  * ---------------------------------------------------------------- */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+    static uint32_t s_key1_tick = 0;
+    static uint32_t s_key2_tick = 0;
+    static uint32_t s_key3_tick = 0;
+    static uint32_t s_enc_key_tick = 0;
+    uint32_t now = HAL_GetTick();
+
     if (GPIO_Pin == ENCODE1_KEY_Pin) {
-        /* Falling edge = press down. Record time, set held flag. */
-        g_enc_key_press_tick = HAL_GetTick();
+        if ((now - s_enc_key_tick) < 80U) return;
+        s_enc_key_tick = now;
+        g_enc_key_press_tick = now;
         g_enc_key_held = 1;
     }
-    else if (GPIO_Pin == KEY2_Pin)   g_key2_flag    = 1;
-    else if (GPIO_Pin == KEY3_Pin)   g_key3_flag    = 1;
-    else if (GPIO_Pin == KEY1_Pin)   g_key1_flag    = 1;
+    else if (GPIO_Pin == KEY2_Pin) {
+        if ((now - s_key2_tick) < 80U) return;
+        s_key2_tick = now;
+        g_key2_flag = 1;
+    }
+    else if (GPIO_Pin == KEY3_Pin) {
+        if ((now - s_key3_tick) < 80U) return;
+        s_key3_tick = now;
+        g_key3_flag = 1;
+    }
+    else if (GPIO_Pin == KEY1_Pin) {
+        if ((now - s_key1_tick) < 120U) return;
+        s_key1_tick = now;
+        g_key1_flag = 1;
+    }
 }
 
 /* ----------------------------------------------------------------

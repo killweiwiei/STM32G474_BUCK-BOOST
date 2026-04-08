@@ -11,7 +11,7 @@
 *   [0x14~0x17] VoutRef float
 *   [0x18~0x1B] fan_auto  uint32 (0=Manual, 1=AUTO)
 *   [0x1C~0x1F] fan_speed uint32 (0-100 %)
-*   [0x20~0x23] work_mode uint32 (0=AUTO,1=BUCK,2=BOOST,3=BB)
+*   [0x20~0x23] work_mode uint32 (0=AUTO,1=BB)
 *   [0x24~0x27] ctrl_cc   uint32 (0=CV, 1=CC)
 *================================================================*/
 #ifndef __CONFIG_STORE_H__
@@ -25,7 +25,7 @@ extern "C" {
 
 /* Flash sector used for config */
 #define CFG_FLASH_ADDR      0x000000UL  /* sector 0, byte 0 */
-#define CFG_MAGIC           0xBB000003UL  /* bump version when layout changes */
+#define CFG_MAGIC           0xBB000004UL  /* bump version when layout changes */
 
 /* Config payload structure (must be multiple of 4 bytes) */
 typedef struct __attribute__((packed)) {
@@ -36,8 +36,9 @@ typedef struct __attribute__((packed)) {
     float    IoutLimit;  /* output current setpoint/limit */
     uint32_t fan_auto;   /* 1=AUTO, 0=Manual       */
     uint32_t fan_speed;  /* manual speed 0-100 %   */
-    uint32_t work_mode;  /* 0=AUTO 1=BUCK 2=BOOST 3=BB */
+    uint32_t work_mode;  /* 0=AUTO 1=BB */
     uint32_t ctrl_cc;    /* 0=CV, 1=CC             */
+    uint32_t output_mode;/* 0=DCM, 1=CCM           */
 } Config_Payload_t;
 
 /* Full NVM record stored in flash */

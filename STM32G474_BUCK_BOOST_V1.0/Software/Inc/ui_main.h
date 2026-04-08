@@ -51,6 +51,8 @@ void    ui_goto_menu(void);
 uint8_t ui_get_page(void);
 uint8_t ui_get_ctrl_cc(void);
 void    ui_set_ctrl_cc(uint8_t cc);
+uint8_t ui_get_output_mode(void);
+void    ui_set_output_mode(uint8_t mode);
 
 /* ----------------------------------------------------------------
  * Vout cursor editor (call from KEY / Encoder handlers)
