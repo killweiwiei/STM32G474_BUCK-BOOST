@@ -1,0 +1,15 @@
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\lv_draw_vg_lite_triangle.c
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\../../misc/lv_area_private.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\../../misc/lv_area.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\../../misc/../lv_conf_internal.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\../../misc/../lv_conf_kconfig.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ../Lvgl9/lv_conf.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\../../misc/lv_types.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\../../misc/lv_math.h
+.\stm32g474_buck_boost_v1.0\lv_draw_vg_lite_triangle.o: ..\Lvgl9\src\draw\vg_lite\lv_draw_vg_lite.h

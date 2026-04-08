@@ -1,0 +1,13 @@
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ..\Lvgl9\src\stdlib\rtthread\lv_mem_core_rtthread.c
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ..\Lvgl9\src\stdlib\rtthread\../lv_mem.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ..\Lvgl9\src\stdlib\rtthread\../../lv_conf_internal.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ..\Lvgl9\src\stdlib\rtthread\../../lv_conf_kconfig.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ../Lvgl9/lv_conf.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ..\Lvgl9\src\stdlib\rtthread\../lv_string.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: ..\Lvgl9\src\stdlib\rtthread\../../misc/lv_types.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\stm32g474_buck_boost_v1.0\lv_mem_core_rtthread.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
