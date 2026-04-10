@@ -1,0 +1,17 @@
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\lv_circle_buf.c
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\lv_assert.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\../lv_conf_internal.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\../lv_conf_kconfig.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ../Lvgl9/lv_conf.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\lv_log.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\lv_types.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\../stdlib/lv_mem.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\../stdlib/lv_string.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\lv_circle_buf.h
+.\stm32g474_buck_boost_v1.0\lv_circle_buf.o: ..\Lvgl9\src\misc\lv_array.h
